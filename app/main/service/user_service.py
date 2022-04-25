@@ -10,8 +10,8 @@ user_list_schema = UserSchema(many=True)
 
 class UserService:
 
-    @classmethod
-    def save_new_user(cls, data):
+    @staticmethod
+    def save_new_user(data):
         first_name = data['first_name']
         last_name = data['last_name']
         if UserModel.find_by_name(first_name) and UserModel.find_by_name(last_name):
@@ -22,26 +22,26 @@ class UserService:
 
         return user_schema.dump(user_data), 201
 
-    @classmethod
-    def get_all_users(cls):
+    @staticmethod
+    def get_all_users():
         return user_list_schema.dump(UserModel.find_all()), 200
 
-    @classmethod
-    def get_user_by_id(cls, user_id: int):
+    @staticmethod
+    def get_user_by_id(user_id: int):
         user_data = UserModel.find_by_id(user_id)
         if user_data:
             return user_schema.dump(user_data)
         return {'message': USER_NOT_FOUND}, 404
 
-    @classmethod
-    def get_user_by_name(cls, name: str):
+    @staticmethod
+    def get_user_by_name(name: str):
         user_data = UserModel.find_by_name(name)
         if user_data:
             return user_schema.dump(user_data)
         return {'message': USER_NOT_FOUND}, 404
 
-    @classmethod
-    def delete_user(cls, user_id: int):
+    @staticmethod
+    def delete_user(user_id: int):
         user_data = UserModel.find_by_id(user_id)
         if user_data:
             user_data.delete_from_db()

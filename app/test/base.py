@@ -1,19 +1,28 @@
-from flask_testing import TestCase
-from app.main import db
-from manage import app
+import pytest
+
+from app.main import create_app
 
 
-class BaseTestCase(TestCase):
-    """ Base Tests """
+@pytest.fixture
+def app():
+    """ The First test does something """
+    return create_app("test")
 
-    def create_app(self):
-        app.config.from_object('app.main.config.TestingConfig')
-        return app
 
-    def setUp(self):
-        db.create_all()
-        db.session.commit()
+@pytest.fixture
+def client(app):
+    """ The First test does something """
+    return app.test_client()
 
-    def tearDown(self):
-        db.session.remove()
+
+@pytest.fixture
+def db(app):
+    """ The First test does something """
+    from app.main import db
+
+    with app.app_context():
         db.drop_all()
+        db.create_all()
+        yield db
+        db.drop_all()
+        db.session.commit()

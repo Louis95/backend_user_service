@@ -1,24 +1,14 @@
 import unittest
 
-from app.main import db
-from app.main.models.user import User
-from app.test.base import BaseTestCase
+from app.main.models.user import UserModel
+from pytest import fixture
+from app.test.base import db, app
 
 
-class TestUserModel(BaseTestCase):
-
-    def test_format(self):
-        user = User(
-            email='test@test.com',
-            password='test',
-            first_name='test',
-            last_name='bleck',
-        )
-        db.session.add(user)
-        db.session.commit()
-        result = user.format()
-        self.assertTrue(result["email"], "test@test.com")
-        self.assertTrue(result["first_name"], "test")
+@fixture
+def userModel() -> "UserModel":
+    """ The First test does something """
+    return UserModel(first_name="louis", last_name="test second")
 
 
 if __name__ == '__main__':
