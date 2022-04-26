@@ -3,7 +3,7 @@ import unittest
 from app.main.models.user import UserModel
 from app.main.models.phone_number import PhoneNumberModel
 from typing import List
-from app.test.base import db, app
+from app.test.fixtures import db, app
 from flask_sqlalchemy import SQLAlchemy
 
 from app.main.service.phone_number_service import PhoneNumberService

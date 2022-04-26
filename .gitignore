@@ -19,6 +19,10 @@ _mailinglist
 docs/_build/
 .vscode
 .pytest_cache
+app/main/test.db
+app/main/user_backend.db
+migrations/
+.idea
 
 
 # Coverage reports

@@ -2,7 +2,7 @@ import unittest
 
 from app.main.models.user import UserModel
 from pytest import fixture
-from app.test.base import db, app
+from app.test.fixtures import db, app
 
 
 @fixture

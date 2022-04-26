@@ -1,7 +1,7 @@
 from app.main.models.user import UserModel
 from app.main.models.email import EmailModel
 from typing import List
-from app.test.base import db, app
+from app.test.fixtures import db, app
 from flask_sqlalchemy import SQLAlchemy
 
 from app.main.service.email_service import EmailService
@@ -31,5 +31,14 @@ def test_save_new_email(db: SQLAlchemy):
 def test_update_phone_number(db: SQLAlchemy):
     create_test_email(db)
 
-    result = EmailService.update_email({"email_address": "loui@gmail.com"},1)
+    result = EmailService.update_email({"email_address": "loui@gmail.com"}, 1)
     assert result[0]["email_address"] == "loui@gmail.com"
+
+
+def test_email_validation(db: SQLAlchemy):
+    valid_email = "test-email@gmail.com"
+    valid_email_result = EmailService.email_validation(valid_email)
+    invalid_email_result = EmailService.email_validation("test_invalid_email.com")
+    assert valid_email_result == True
+    assert not valid_email_result == False
+    assert invalid_email_result == False

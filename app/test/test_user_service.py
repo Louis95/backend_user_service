@@ -2,7 +2,7 @@ import unittest
 
 from app.main.models.user import UserModel
 from typing import List
-from app.test.base import db, app
+from app.test.fixtures import db, app
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,7 +10,6 @@ from app.main.service.user_service import UserService
 
 
 def save_test_user(db: SQLAlchemy):
-    """ The First test does something """
     louis: UserModel = UserModel(first_name="louis", last_name="aso")
     penn: UserModel = UserModel(first_name="penn", last_name="muluh")
     db.session.add(louis)
@@ -19,7 +18,6 @@ def save_test_user(db: SQLAlchemy):
 
 
 def test_get_all(db: SQLAlchemy):
-    """ The First test does something """
     save_test_user(db)
     results: List[UserModel] = UserService.get_all_users()
 
