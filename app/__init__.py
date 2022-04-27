@@ -1,5 +1,5 @@
 from flask_restplus import Api
-from flask import Blueprint, jsonify
+from flask import Blueprint
 
 from .main.controller.user_controller import Users, User, UserByName, user_ns
 from .main.controller.email_controller import Email, Emails, email_ns
