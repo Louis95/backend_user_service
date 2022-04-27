@@ -1,7 +1,7 @@
 import os
 
 # uncomment the line below for postgres database url from environment variable
-postgres_url = os.environ['DATABASE_URL']
+postgres_url = os.environ['DB_URL']
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
