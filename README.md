@@ -37,7 +37,7 @@ finally type
 
 ### Endpoints
 
-You can import collection.json to test the different endpoints
+You can import collection.json into postman to test the different endpoints
 
 ### Running Tests
 To run the test suite, simply pip install it and run from the root directory like so
