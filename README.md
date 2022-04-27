@@ -35,7 +35,7 @@ Next, run the database migrations
 finally type
 ```python manage.py run``` to run the project
 
-Endpoints
+### Endpoints
 
 You can import collection.json to test the different endpoints
 
