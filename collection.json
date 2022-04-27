@@ -1,0 +1,370 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/email/": {
+            "post": {
+                "responses": {
+                    "201": {
+                        "description": "Email successfully created."
+                    }
+                },
+                "summary": "Creates a new Email",
+                "operationId": "create a new email",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/EmailModel"
+                        }
+                    }
+                ],
+                "tags": [
+                    "emails"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "List all registered emails",
+                "operationId": "list all available emails",
+                "tags": [
+                    "emails"
+                ]
+            }
+        },
+        "/email/{email_id}": {
+            "parameters": [
+                {
+                    "name": "email_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "put": {
+                "responses": {
+                    "201": {
+                        "description": "Email successfully updated"
+                    }
+                },
+                "operationId": "Update an existing email",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateEmail"
+                        }
+                    }
+                ],
+                "tags": [
+                    "emails"
+                ]
+            }
+        },
+        "/phone/": {
+            "post": {
+                "responses": {
+                    "201": {
+                        "description": "Email successfully created."
+                    }
+                },
+                "summary": "Creates a new Phone number",
+                "operationId": "create a new phone number",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/PhoneNumberModel"
+                        }
+                    }
+                ],
+                "tags": [
+                    "phone numbers"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "List all registered emails",
+                "operationId": "list all available phone numbers",
+                "tags": [
+                    "phone numbers"
+                ]
+            }
+        },
+        "/phone/{phone_number_id}": {
+            "parameters": [
+                {
+                    "name": "phone_number_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "put": {
+                "responses": {
+                    "201": {
+                        "description": "phone numbers successfully updated"
+                    }
+                },
+                "operationId": "Update an existing phone number",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/updatePhoneNumber"
+                        }
+                    }
+                ],
+                "tags": [
+                    "phone numbers"
+                ]
+            }
+        },
+        "/user/": {
+            "post": {
+                "responses": {
+                    "201": {
+                        "description": "User successfully created."
+                    }
+                },
+                "summary": "Creates a new User",
+                "operationId": "create a new user",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                ],
+                "tags": [
+                    "users"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "List all registered users gd",
+                "operationId": "list_of_registered_users",
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/user/{name}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "description": "The User name",
+                    "name": "name",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "404": {
+                        "description": "User not found."
+                    },
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                },
+                "summary": "get a user by name",
+                "operationId": "get a user by name",
+                "parameters": [
+                    {
+                        "name": "X-Fields",
+                        "in": "header",
+                        "type": "string",
+                        "format": "mask",
+                        "description": "An optional fields mask"
+                    }
+                ],
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/user/{user_id}": {
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                },
+                "summary": "get a user given its identifier",
+                "operationId": "get a user given its identifier",
+                "parameters": [
+                    {
+                        "name": "X-Fields",
+                        "in": "header",
+                        "type": "string",
+                        "format": "mask",
+                        "description": "An optional fields mask"
+                    }
+                ],
+                "tags": [
+                    "users"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Delete a user with a given id",
+                "operationId": "delete a user",
+                "tags": [
+                    "users"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "User query backend",
+        "version": "1.0",
+        "description": "query user from the database"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "users",
+            "description": "user related operations"
+        },
+        {
+            "name": "emails",
+            "description": "email related operations"
+        },
+        {
+            "name": "phone numbers",
+            "description": "phone numbers related operations"
+        }
+    ],
+    "definitions": {
+        "UserModel": {
+            "required": [
+                "first_name",
+                "last_name"
+            ],
+            "properties": {
+                "first_name": {
+                    "type": "string",
+                    "description": "user first name"
+                },
+                "last_name": {
+                    "type": "string",
+                    "description": "user last name"
+                }
+            },
+            "type": "object"
+        },
+        "EmailModel": {
+            "required": [
+                "email_address",
+                "user_id"
+            ],
+            "properties": {
+                "email_address": {
+                    "type": "string",
+                    "description": "email address"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "description": "user id"
+                }
+            },
+            "type": "object"
+        },
+        "UpdateEmail": {
+            "required": [
+                "email_address"
+            ],
+            "properties": {
+                "email_address": {
+                    "type": "string",
+                    "description": "email address"
+                }
+            },
+            "type": "object"
+        },
+        "PhoneNumberModel": {
+            "required": [
+                "phone_number",
+                "user_id"
+            ],
+            "properties": {
+                "phone_number": {
+                    "type": "string",
+                    "description": " phone number"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "description": "user id"
+                }
+            },
+            "type": "object"
+        },
+        "updatePhoneNumber": {
+            "required": [
+                "phone_number"
+            ],
+            "properties": {
+                "phone_number": {
+                    "type": "string",
+                    "description": " phone number"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}
