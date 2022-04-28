@@ -1,7 +1,12 @@
 import os
 
-# uncomment the line below for postgres database url from environment variable
-postgres_url = os.environ['DB_URL']
+DB_HOST = os.getenv('DB_HOST')
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_BASE_URL = "postgresql://{}:{}@{}:5432/{}"
+
+postgres_local_base = DB_BASE_URL.format(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -13,7 +18,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     # uncomment the line below to use postgres
-    SQLALCHEMY_DATABASE_URI = postgres_url
+    SQLALCHEMY_DATABASE_URI = postgres_local_base
     DEBUG = True
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'user_backend.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -33,7 +38,7 @@ class ProductionConfig(Config):
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # uncomment the line below to use postgres
-    SQLALCHEMY_DATABASE_URI = postgres_url
+    SQLALCHEMY_DATABASE_URI = postgres_local_base
 
 
 config_by_name = dict(

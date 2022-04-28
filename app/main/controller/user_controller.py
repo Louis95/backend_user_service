@@ -12,7 +12,7 @@ _user = UserDto.user
 class Users(Resource):
     @user_ns.doc("list_of_registered_users")
     def get(self):
-        """List all registered users gd"""
+        """List all registered users"""
         return UserService.get_all_users()
 
     @user_ns.response(201, "User successfully created.")

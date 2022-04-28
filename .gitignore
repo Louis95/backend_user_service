@@ -3,7 +3,7 @@
 .flaskenv
 *.pyc
 *.pyo
-app/main/.env
+app/main/.env.sample/
 interview-be/
 .venv/
 env*
